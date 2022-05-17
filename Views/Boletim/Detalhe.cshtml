@@ -1,0 +1,128 @@
+@model Boletim
+@{
+    ViewData["Title"] = "Adicionar um novo Boletim";
+}
+
+
+<div class="text-center">
+    <h4>@if (Model.Id > 0)
+        {
+            @Html.Raw("Editar Boletim")
+            ;
+        }
+        else
+        {
+            @Html.Raw("Incluir Boletim")
+            ;
+        }
+    </h4>
+</div>
+
+<form method="POST" asp-action="Detalhe" asp-controller="Boletim" class="form p-5"
+    style="border: 3px solid grey; background: #E6E6E6; border-radius: 15px; margin-top: 30px;">
+    <div class="text-danger">@Html.ValidationSummary()</div>
+    <div class="text-danger" id="divErroItem"></div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <input asp-for="Id" type="hidden" class="form-control">
+            <label class="form-label">Aluno(a)</label>
+            <select asp-for="IdAluno" asp-items="@ViewBag.Alunos" class="form-control"></select>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Grade de Aula</label>
+            <input asp-for="IdGradeAula" type="text" class="form-control">
+        </div>
+    </div>
+
+
+    <div id="divItem" hidden>
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label">Avaliacao</label>
+                <input asp-for="DescricaoAvaliacao" type="text" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Nota</label>
+                <input asp-for="Nota" type="text" class="form-control">
+            </div>
+        </div>
+    </div>
+
+    <input type="button" value="Voltar" class="btn btn-success" onclick="Voltar()"
+        style="margin-top: 30px; margin-bottom: 15px;"></td>
+    <input type="button" value="Salvar" class="btn btn-success"  onclick="Salvar()"
+    style="margin-top: 30px; margin-bottom: 15px;">
+    <input id="novo" type="button" value="Novo" class="btn btn-success" onclick="Adicionar()"
+        style="margin-top: 30px; margin-bottom: 15px;"></td>
+    <input type="button" value="Cancelar" onclick="Cancelar()" class="btn btn-danger"
+        style="margin-top: 30px; margin-bottom: 15px;"></td>
+
+    <div id="divpartialitens">
+
+    </div>
+
+</form>
+
+<script>
+
+    function Voltar() {
+        window.location.href = "https://localhost:5001/Boletim";
+    }
+
+    window.onload = function () {
+        Pesquisar();
+    }
+
+    function Adicionar() {
+        $('#divItem').prop('hidden', false);
+        Limpar();
+    }
+
+    function Limpar(){
+        $('#DescricaoAvaliacao').val('');
+        $('#Nota').val('');
+    }
+
+    function Pesquisar() {
+        var result = $('#Id').val(); 
+        var url = '/Boletim/ListaPartialView';
+        var parametros = { idBoletim: result };
+        $.get(url, parametros) 
+            .done(function (data) {
+                $('#divpartialitens').html(data);  
+            });
+    }
+
+    function Salvar() {
+        var idBoletim = $('#Id').val();
+        var idAluno = $('#IdAluno').val();
+        var idGradeAula = $('#IdGradeAula').val();
+        var avaliacao = $('#DescricaoAvaliacao').val();
+        var nota = $('#Nota').val();
+        //debugger;
+        
+        var url = '/Boletim/Detalhe';
+        var parametros = {
+            Id: idBoletim, IdAluno: idAluno, IdGradeAula: idGradeAula, DescricaoAvaliacao: avaliacao,
+            Nota: nota
+        };
+        $.post(url, parametros)
+            .done(function (data) {
+                if (data.sucesso) {
+                    $('#divItem').prop('hidden', true);
+                    Pesquisar();
+                    Limpar();
+                } else {
+                    $('#divErroItem').html(data.mensagem);
+                }
+            });
+    }
+
+    function Cancelar(){
+        $('#divItem').prop('hidden', true);
+        Limpar();
+        
+    }
+
+</script>

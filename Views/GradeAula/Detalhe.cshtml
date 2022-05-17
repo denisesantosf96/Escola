@@ -1,0 +1,133 @@
+@model GradeAula
+@{
+    ViewData["Title"] = "Adicionar uma nova Grade de Aula";
+}
+
+@section Scripts{
+
+}
+
+<div class="text-center">
+    <h4>@if (Model.Id > 0)
+        {
+            @Html.Raw("Editar Grade de Aula")
+            ;
+        }
+        else
+        {
+            @Html.Raw("Incluir Grade de Aula")
+            ;
+        }
+    </h4>
+</div>
+
+
+<form method="POST" asp-action="Detalhe" asp-controller="GradeAula" class="form p-5"
+    style="border: 3px solid grey; background: #E6E6E6; border-radius: 15px; margin-top: 30px;">
+    <div class="text-danger">@Html.ValidationSummary()</div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <input asp-for="Id" type="hidden" class="form-control">
+            <input asp-for="IdProfessor" type="hidden" class="form-control">
+            <input asp-for="IdMateria" type="hidden" class="form-control">
+            <label class="form-label">Escola</label>
+            <select asp-for="IdEscola" asp-items="@ViewBag.Escolas" class="form-control"></select>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Turma</label>
+            <select asp-for="IdTurma" asp-items="@ViewBag.Turmas" class="form-control"></select>
+        </div>
+    </div>
+
+    <div id="divItem" hidden>
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label">Professor</label>
+                <select asp-for="IdProfessor" asp-items="@ViewBag.Professores" class="form-control"></select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Matéria</label>
+                <select asp-for="IdMateria" asp-items="@ViewBag.Materias" class="form-control"></select>
+            </div>
+        </div>
+    </div>
+
+    <input type="button" value="Voltar" class="btn btn-success" onclick="Voltar()"
+        style="margin-top: 30px; margin-bottom: 15px;"></td>
+    <input type="button" value="Salvar" class="btn btn-success" onclick="Salvar()"
+        style="margin-top: 30px; margin-bottom: 15px;">
+    <input id="novo" type="button" value="Novo" class="btn btn-success" onclick="Adicionar()"
+        style="margin-top: 30px; margin-bottom: 15px;"></td>
+    <input type="button" value="Cancelar" onclick="Cancelar()" class="btn btn-danger"
+        style="margin-top: 30px; margin-bottom: 15px;"></td>
+
+    <div id="divpartialitens">
+
+    </div>
+
+</form>
+
+<script>
+
+    function Voltar() {
+        window.location.href = "https://localhost:5001/GradeAula";
+    }
+
+    window.onload = function () {
+        Pesquisar();
+    }
+
+    function Adicionar() {
+        $('#divItem').prop('hidden', false);
+        Limpar();
+    }
+
+    function Limpar(){
+        $('#IdProfessor').val('');
+        $('#IdMateria').val('');
+    }
+
+    function Pesquisar() {
+        var result = $('#Id').val(); 
+        var url = '/GradeAula/ListaPartialView';
+        var parametros = { idGradeAula: result };
+        $.get(url, parametros) 
+            .done(function (data) {
+                $('#divpartialitens').html(data);  
+            });
+    }
+
+    function Salvar() {
+        var idGradeAula = $('#Id').val();
+        var idEscola = $('#IdEscola').val();
+        var idTurma = $('#IdTurma').val();
+        var idProfessor = $('#IdProfessor').val();
+        var idMateria = $('#IdMateria').val();
+        //debugger;
+        
+        var url = '/Boletim/Detalhe';
+        var parametros = {
+            Id: idGradeAula, IdEscola: idEscola, IdTurma: idTurma, IdProfessor: idProfessor,
+            IdMateria: idMateria
+        };
+        $.post(url, parametros)
+            .done(function (data) {
+                if (data.sucesso) {
+                    $('#divItem').prop('hidden', true);
+                    Pesquisar();
+                    Limpar();
+                } else {
+                    $('#divErroItem').html(data.mensagem);
+                }
+            });
+    }
+
+    function Cancelar(){
+        $('#divItem').prop('hidden', true);
+        Limpar();
+        
+    }
+
+
+</script>
