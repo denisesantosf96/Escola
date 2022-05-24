@@ -22,49 +22,51 @@
 </div>
 
 
-    <form method="POST" asp-action="Detalhe" asp-controller="GradeAula" class="form p-5"
-        style="border: 3px solid grey; background: #E6E6E6; border-radius: 15px; margin-top: 30px;">
-        <div class="text-danger">@Html.ValidationSummary()</div>
-        <div class="text-danger" id="divErroItem"></div>
+<form method="POST" asp-action="Detalhe" asp-controller="GradeAula" class="form p-5"
+    style="border: 3px solid grey; background: #E6E6E6; border-radius: 15px; margin-top: 30px;">
+    <div class="text-danger">@Html.ValidationSummary()</div>
 
+    <div class="row">
+        <div class="col-md-6">
+            <input asp-for="Id" type="hidden" class="form-control">
+            <input asp-for="IdProfessor" type="hidden" class="form-control">
+            <input asp-for="IdMateria" type="hidden" class="form-control">
+            <label class="form-label">Escola</label>
+            <select asp-for="IdEscola" asp-items="@ViewBag.Escolas" class="form-control"></select>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Turma</label>
+            <select asp-for="IdTurma" asp-items="@ViewBag.Turmas" class="form-control"></select>
+        </div>
+    </div>
+
+    <div id="divItem" hidden>
         <div class="row">
             <div class="col-md-6">
-                <input asp-for="Id" type="hidden" class="form-control">
-                <input asp-for="IdProfessor" type="hidden" class="form-control">
-                <input asp-for="IdMateria" type="hidden" class="form-control">
-                <label class="form-label">Turma</label>
-                <select asp-for="IdTurma" asp-items="@ViewBag.Turmas" class="form-control"></select>
+                <label class="form-label">Professor</label>
+                <select asp-for="IdProfessor" asp-items="@ViewBag.Professores" class="form-control"></select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Matéria</label>
+                <select asp-for="IdMateria" asp-items="@ViewBag.Materias" class="form-control"></select>
             </div>
         </div>
+    </div>
 
-        <div id="divItem" hidden>
-            <div class="row">
-                <div class="col-md-6">
-                    <label class="form-label">Professor</label>
-                    <select asp-for="IdProfessor" asp-items="@ViewBag.Professores" class="form-control"></select>
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label">Matéria</label>
-                    <select asp-for="IdMateria" asp-items="@ViewBag.Materias" class="form-control"></select>
-                </div>
-            </div>
-        </div>
+    <input type="button" value="Voltar" class="btn btn-success" onclick="Voltar()"
+        style="margin-top: 30px; margin-bottom: 15px;"></td>
+    <input type="button" value="Salvar" class="btn btn-success" onclick="Salvar()"
+        style="margin-top: 30px; margin-bottom: 15px;">
+    <input id="novo" type="button" value="Novo" class="btn btn-success" onclick="Adicionar()"
+        style="margin-top: 30px; margin-bottom: 15px;"></td>
+    <input type="button" value="Cancelar" onclick="Cancelar()" class="btn btn-danger"
+        style="margin-top: 30px; margin-bottom: 15px;"></td>
 
-        <input type="button" value="Voltar" class="btn btn-success" onclick="Voltar()"
-            style="margin-top: 30px; margin-bottom: 15px;"></td>
-        <input type="button" value="Salvar" class="btn btn-success" onclick="Salvar()"
-            style="margin-top: 30px; margin-bottom: 15px;">
-        <input id="novo" type="button" value="Novo" class="btn btn-success" onclick="Adicionar()"
-            style="margin-top: 30px; margin-bottom: 15px;"></td>
-        <input type="button" value="Cancelar" onclick="Cancelar()" class="btn btn-danger"
-            style="margin-top: 30px; margin-bottom: 15px;"></td>
+    <div id="divpartialitens">
 
-        <div id="divpartialitens">
+    </div>
 
-        </div>
-
-    </form>
-
+</form>
 
 <script>
 
@@ -78,6 +80,7 @@
 
     function Adicionar() {
         $('#divItem').prop('hidden', false);
+        Limpar();
     }
 
     function Limpar(){
@@ -97,14 +100,15 @@
 
     function Salvar() {
         var idGradeAula = $('#Id').val();
+        var idEscola = $('#IdEscola').val();
         var idTurma = $('#IdTurma').val();
         var idProfessor = $('#IdProfessor').val();
         var idMateria = $('#IdMateria').val();
-        debugger;
+        //debugger;
         
-        var url = '/GradeAula/Detalhe';
+        var url = '/Boletim/Detalhe';
         var parametros = {
-            Id: idGradeAula, IdTurma: idTurma, IdProfessor: idProfessor,
+            Id: idGradeAula, IdEscola: idEscola, IdTurma: idTurma, IdProfessor: idProfessor,
             IdMateria: idMateria
         };
         $.post(url, parametros)

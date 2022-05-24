@@ -36,7 +36,7 @@ namespace Escola.Controllers
             return View(gradeaulas.ToPagedList(numeroPagina, itensPorPagina));
         }
 
-        public IActionResult Detalhe(int id)
+        public IActionResult Detalhe(int id, int idescola)
         {
             Models.GradeAula gradeaula = new Models.GradeAula();
             if (id > 0)  {
@@ -44,15 +44,19 @@ namespace Escola.Controllers
                 new SqlParameter("@identificacao", id)
             };
                 gradeaula = _context.ListarObjeto<Models.GradeAula>("sp_buscarGradeAulaPorId", parametros); 
-            } 
+            } else {
+                gradeaula.IdEscola = idescola;
+            }
 
-            return new JsonResult(new {Sucesso = gradeaula.Id > 0, GradeAula = gradeaula});
+            ViewBagTurmas(id > 0 ? gradeaula.IdEscola : idescola);
+            ViewBagProfessores();
+            ViewBagMaterias();
+            ViewBagEscolas();
+            return View(gradeaula);
         }
 
         [HttpPost]
         public IActionResult Detalhe(Models.GradeAula gradeaula){
-
-            string mensagem = "";
               
 
             if(ModelState.IsValid){
@@ -70,16 +74,19 @@ namespace Escola.Controllers
                 var retorno = _context.ListarObjeto<RetornoProcedure>(gradeaula.Id > 0? "sp_atualizarGradeAula" : "sp_inserirGradeAula", parametros.ToArray());
             
                 if (retorno.Mensagem == "Ok"){
-                    return new JsonResult(new {Sucesso = retorno.Mensagem == "Ok"});
+                    return RedirectToAction("Index");
                 } else {
-                    mensagem = retorno.Mensagem;
-                    
+                    ModelState.AddModelError("", retorno.Mensagem);
                     
                 }
             }
 
 
-            return new JsonResult(new {Sucesso = false, Mensagem = mensagem});
+            ViewBagTurmas(gradeaula.IdEscola);
+            ViewBagProfessores();
+            ViewBagMaterias();
+            ViewBagEscolas();
+            return View(gradeaula);
         }
 
         public JsonResult Excluir(int id){
