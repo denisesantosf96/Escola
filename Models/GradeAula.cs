@@ -10,5 +10,7 @@ namespace Escola.Models
         public string Tipo { get; set; }
         public string Descricao { get; set; }
         public string Serie { get; set; }
+        public string Nome { get; set; }
+        public string NomeMateria { get; set; }
     }
 }

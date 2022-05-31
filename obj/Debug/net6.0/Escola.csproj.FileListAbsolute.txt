@@ -68,3 +68,38 @@ D:\Programação\.NET e C#\Projetos\Escola\obj\Debug\net6.0\Escola.dll
 D:\Programação\.NET e C#\Projetos\Escola\obj\Debug\net6.0\ref\Escola.dll
 D:\Programação\.NET e C#\Projetos\Escola\obj\Debug\net6.0\Escola.pdb
 D:\Programação\.NET e C#\Projetos\Escola\obj\Debug\net6.0\Escola.genruntimeconfig.cache
+C:\Users\denis\Downloads\Escola-master\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\denis\Downloads\Escola-master\bin\Debug\net6.0\appsettings.json
+C:\Users\denis\Downloads\Escola-master\bin\Debug\net6.0\Escola.staticwebassets.runtime.json
+C:\Users\denis\Downloads\Escola-master\bin\Debug\net6.0\Escola.exe
+C:\Users\denis\Downloads\Escola-master\bin\Debug\net6.0\Escola.deps.json
+C:\Users\denis\Downloads\Escola-master\bin\Debug\net6.0\Escola.runtimeconfig.json
+C:\Users\denis\Downloads\Escola-master\bin\Debug\net6.0\Escola.dll
+C:\Users\denis\Downloads\Escola-master\bin\Debug\net6.0\ref\Escola.dll
+C:\Users\denis\Downloads\Escola-master\bin\Debug\net6.0\Escola.pdb
+C:\Users\denis\Downloads\Escola-master\bin\Debug\net6.0\JetBrains.Annotations.dll
+C:\Users\denis\Downloads\Escola-master\bin\Debug\net6.0\System.Data.SqlClient.dll
+C:\Users\denis\Downloads\Escola-master\bin\Debug\net6.0\X.PagedList.dll
+C:\Users\denis\Downloads\Escola-master\bin\Debug\net6.0\X.PagedList.Mvc.Core.dll
+C:\Users\denis\Downloads\Escola-master\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
+C:\Users\denis\Downloads\Escola-master\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
+C:\Users\denis\Downloads\Escola-master\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
+C:\Users\denis\Downloads\Escola-master\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\denis\Downloads\Escola-master\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\denis\Downloads\Escola-master\obj\Debug\net6.0\Escola.csproj.AssemblyReference.cache
+C:\Users\denis\Downloads\Escola-master\obj\Debug\net6.0\Escola.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\denis\Downloads\Escola-master\obj\Debug\net6.0\Escola.AssemblyInfoInputs.cache
+C:\Users\denis\Downloads\Escola-master\obj\Debug\net6.0\Escola.AssemblyInfo.cs
+C:\Users\denis\Downloads\Escola-master\obj\Debug\net6.0\Escola.csproj.CoreCompileInputs.cache
+C:\Users\denis\Downloads\Escola-master\obj\Debug\net6.0\Escola.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\denis\Downloads\Escola-master\obj\Debug\net6.0\Escola.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\denis\Downloads\Escola-master\obj\Debug\net6.0\Escola.RazorAssemblyInfo.cache
+C:\Users\denis\Downloads\Escola-master\obj\Debug\net6.0\Escola.RazorAssemblyInfo.cs
+C:\Users\denis\Downloads\Escola-master\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\denis\Downloads\Escola-master\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\denis\Downloads\Escola-master\obj\Debug\net6.0\scopedcss\bundle\Escola.styles.css
+C:\Users\denis\Downloads\Escola-master\obj\Debug\net6.0\Escola.csproj.CopyComplete
+C:\Users\denis\Downloads\Escola-master\obj\Debug\net6.0\Escola.dll
+C:\Users\denis\Downloads\Escola-master\obj\Debug\net6.0\ref\Escola.dll
+C:\Users\denis\Downloads\Escola-master\obj\Debug\net6.0\Escola.pdb
+C:\Users\denis\Downloads\Escola-master\obj\Debug\net6.0\Escola.genruntimeconfig.cache

@@ -51,7 +51,6 @@ namespace Escola.Controllers
             ViewBagTurmas(id > 0 ? gradeaula.IdEscola : idescola);
             ViewBagProfessores();
             ViewBagMaterias();
-            ViewBagEscolas();
             return View(gradeaula);
         }
 

@@ -31,18 +31,15 @@
             <input asp-for="Id" type="hidden" class="form-control">
             <input asp-for="IdProfessor" type="hidden" class="form-control">
             <input asp-for="IdMateria" type="hidden" class="form-control">
-            <label class="form-label">Escola</label>
-            <select asp-for="IdEscola" asp-items="@ViewBag.Escolas" class="form-control"></select>
-        </div>
-        <div class="col-md-6">
             <label class="form-label">Turma</label>
             <select asp-for="IdTurma" asp-items="@ViewBag.Turmas" class="form-control"></select>
         </div>
     </div>
 
     <div id="divItem" hidden>
-        <div class="row">
+        <div class="row" id="divErroItem">
             <div class="col-md-6">
+                <input asp-for="Id" type="hidden" class="form-control">
                 <label class="form-label">Professor</label>
                 <select asp-for="IdProfessor" asp-items="@ViewBag.Professores" class="form-control"></select>
             </div>
@@ -100,15 +97,19 @@
 
     function Salvar() {
         var idGradeAula = $('#Id').val();
-        var idEscola = $('#IdEscola').val();
         var idTurma = $('#IdTurma').val();
         var idProfessor = $('#IdProfessor').val();
         var idMateria = $('#IdMateria').val();
         //debugger;
+
+        if (idTurma == "") {
+            $('#divErroItem').html("Escolha uma opção, por favor");
+            return;
+        }
         
-        var url = '/Boletim/Detalhe';
+        var url = '/GradeAula/Detalhe';
         var parametros = {
-            Id: idGradeAula, IdEscola: idEscola, IdTurma: idTurma, IdProfessor: idProfessor,
+            Id: idGradeAula, IdTurma: idTurma, IdProfessor: idProfessor,
             IdMateria: idMateria
         };
         $.post(url, parametros)
@@ -128,6 +129,5 @@
         Limpar();
         
     }
-
 
 </script>

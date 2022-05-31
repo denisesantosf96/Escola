@@ -8,121 +8,121 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Escola
 build_property.RootNamespace = Escola
-build_property.ProjectDir = D:\Programação\.NET e C#\Projetos\Escola\
+build_property.ProjectDir = d:\Programação\.NET e C#\Projetos\Escola\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Programação\.NET e C#\Projetos\Escola
+build_property.MSBuildProjectDirectory = d:\Programação\.NET e C#\Projetos\Escola
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Aluno/Detalhe.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Aluno/Detalhe.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bm9cRGV0YWxoZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Aluno/Index.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Aluno/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bm9cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Aluno/ListaPartialView.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Aluno/ListaPartialView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bm9cTGlzdGFQYXJ0aWFsVmlldy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Boletim/Detalhe.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Boletim/Detalhe.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9sZXRpbVxEZXRhbGhlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Boletim/Index.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Boletim/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9sZXRpbVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Boletim/ListaPartialView.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Boletim/ListaPartialView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9sZXRpbVxMaXN0YVBhcnRpYWxWaWV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Escola/Detalhe.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Escola/Detalhe.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXNjb2xhXERldGFsaGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Escola/Index.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Escola/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXNjb2xhXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Escola/ListaPartialView.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Escola/ListaPartialView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXNjb2xhXExpc3RhUGFydGlhbFZpZXcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/GradeAula/Detalhe.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/GradeAula/Detalhe.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JhZGVBdWxhXERldGFsaGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/GradeAula/Index.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/GradeAula/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JhZGVBdWxhXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/GradeAula/ListaPartialView.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/GradeAula/ListaPartialView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JhZGVBdWxhXExpc3RhUGFydGlhbFZpZXcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Home/Index.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Home/Privacy.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Materia/Detalhe.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Materia/Detalhe.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYVxEZXRhbGhlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Materia/Index.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Materia/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Materia/ListaPartialView.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Materia/ListaPartialView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYVxMaXN0YVBhcnRpYWxWaWV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Professor/Detalhe.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Professor/Detalhe.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmVzc29yXERldGFsaGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Professor/Index.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Professor/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmVzc29yXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Professor/ListaPartialView.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Professor/ListaPartialView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmVzc29yXExpc3RhUGFydGlhbFZpZXcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Shared/Error.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Shared/_Layout.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Shared/_ValidationScriptsPartial.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Turma/Detalhe.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Turma/Detalhe.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHVybWFcRGV0YWxoZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Turma/Index.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Turma/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHVybWFcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/Turma/ListaPartialView.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/Turma/ListaPartialView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHVybWFcTGlzdGFQYXJ0aWFsVmlldy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/_ViewImports.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programação/.NET e C\#/Projetos/Escola/Views/_ViewStart.cshtml]
+[d:/Programação/.NET e C\#/Projetos/Escola/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

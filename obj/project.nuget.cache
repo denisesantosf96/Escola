@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GuOfVJcO1TWt6Vg+RnT8BTVcVpqb2rNbeOoKFlyogMh4P/IZZ8XOYZDfmmq1fnZSjkqeZS3tVYAFBkYQ90nlDA==",
+  "dgSpecHash": "3WVsXOf4DJa2RathscxmOE6L6vLWD9ASMrltJMCuy/TAttaHHg0GQJltmGQgmx/Br/ocUDwbtAkSRkjGF4zm3g==",
   "success": true,
-  "projectFilePath": "D:\\Programação\\.NET e C#\\Projetos\\Escola\\Escola.csproj",
+  "projectFilePath": "C:\\Users\\denis\\Downloads\\Escola-master\\Escola.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\denis\\.nuget\\packages\\jetbrains.annotations\\2021.1.0\\jetbrains.annotations.2021.1.0.nupkg.sha512",
     "C:\\Users\\denis\\.nuget\\packages\\jquery.inputmask\\5.0.7\\jquery.inputmask.5.0.7.nupkg.sha512",

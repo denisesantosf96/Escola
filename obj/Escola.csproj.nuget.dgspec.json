@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Programação\\.NET e C#\\Projetos\\Escola\\Escola.csproj": {}
+    "C:\\Users\\denis\\Downloads\\Escola-master\\Escola.csproj": {}
   },
   "projects": {
-    "D:\\Programação\\.NET e C#\\Projetos\\Escola\\Escola.csproj": {
+    "C:\\Users\\denis\\Downloads\\Escola-master\\Escola.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Programação\\.NET e C#\\Projetos\\Escola\\Escola.csproj",
+        "projectUniqueName": "C:\\Users\\denis\\Downloads\\Escola-master\\Escola.csproj",
         "projectName": "Escola",
-        "projectPath": "D:\\Programação\\.NET e C#\\Projetos\\Escola\\Escola.csproj",
+        "projectPath": "C:\\Users\\denis\\Downloads\\Escola-master\\Escola.csproj",
         "packagesPath": "C:\\Users\\denis\\.nuget\\packages\\",
-        "outputPath": "D:\\Programação\\.NET e C#\\Projetos\\Escola\\obj\\",
+        "outputPath": "C:\\Users\\denis\\Downloads\\Escola-master\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\denis\\AppData\\Roaming\\NuGet\\NuGet.Config"
