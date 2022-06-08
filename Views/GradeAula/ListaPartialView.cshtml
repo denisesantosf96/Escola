@@ -5,11 +5,9 @@
 <table class="table">
         <thead class="thead-dark">
         <tr>
-            <th>Id</th>
+            <th>Id Turma</th>
             <th>Turma</th>
-            
-            <th>Professor</th>
-            <th>Matéria</th>
+        
 
             <th></th>
         </tr>
@@ -18,12 +16,10 @@
             @for (int i = 0; i < Model.Count; i++)
             {
                 <tr>
-            <td>@Model[i].Id</td>
+            <td>@Model[i].IdTurma</td>
             <td>@Model[i].IdTurma - @Model[i].Tipo - @Model[i].Serie - @Model[i].Descricao</td>
-            <td>@Model[i].IdProfessor</td>
-            <td>@Model[i].IdMateria</td>
-            <td><input type="button" value="Editar" class="btn btn-dark" onclick="javascript:window.location=`/GradeAula/Detalhe/${@Model[i].Id}`">
-            <input type="button" value="Excluir" class="btn btn-danger" onclick="Excluir(@Model[i].Id)"></td>
+            <td><input type="button" value="Editar" class="btn btn-dark" onclick="javascript:window.location=`/GradeAula/Detalhe/?idTurma=${@Model[i].IdTurma}&idEscola=${@Model[i].IdEscola}`">
+            <input type="button" value="Excluir" class="btn btn-danger" onclick="Excluir(@Model[i].IdTurma)"></td>
             
             </tr>
             }

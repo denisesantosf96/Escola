@@ -36,22 +36,14 @@ namespace Escola.Controllers
             return View(gradeaulas.ToPagedList(numeroPagina, itensPorPagina));
         }
 
-        public IActionResult Detalhe(int id, int idescola)
+        public IActionResult Detalhe(int? idTurma, int idEscola)
         {
-            Models.GradeAula gradeaula = new Models.GradeAula();
-            if (id > 0)  {
-                SqlParameter[] parametros = new SqlParameter[]{
-                new SqlParameter("@identificacao", id)
-            };
-                gradeaula = _context.ListarObjeto<Models.GradeAula>("sp_buscarGradeAulaPorId", parametros); 
-            } else {
-                gradeaula.IdEscola = idescola;
-            }
-
-            ViewBagTurmas(id > 0 ? gradeaula.IdEscola : idescola);
-            ViewBagProfessores();
-            ViewBagMaterias();
-            return View(gradeaula);
+            
+            ViewBag.IdTurma = idTurma;
+            ViewBagTurmas(idEscola);
+            ViewBagProfessores(); 
+            ViewBagMaterias(); 
+            return View();
         }
 
         [HttpPost]
@@ -103,6 +95,17 @@ namespace Escola.Controllers
             List<Models.GradeAula> gradeaulas = _context.RetornarLista<Models.GradeAula>("sp_consultarGradeAula", parametros);
 
             HttpContext.Session.SetInt32("IdEscola", idescola);
+
+            return PartialView(gradeaulas.ToPagedList(1, itensPorPagina));
+        }
+
+        public PartialViewResult ListaPartialViewDetalhe(int idTurma){
+            SqlParameter[] parametros = new SqlParameter[]{
+                new SqlParameter("@identificacao", idTurma)
+            };
+            List<Models.GradeAula> gradeaulas = _context.RetornarLista<Models.GradeAula>("sp_buscarGradeAulaPorId", parametros);
+
+            HttpContext.Session.SetInt32("IdTurma", idTurma);
 
             return PartialView(gradeaulas.ToPagedList(1, itensPorPagina));
         }

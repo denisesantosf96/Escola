@@ -1,23 +1,16 @@
-@model GradeAula
+
 @{
     ViewData["Title"] = "Adicionar uma nova Grade de Aula";
 }
 
 @section Scripts{
+    
 
 }
 
 <div class="text-center">
-    <h4>@if (Model.Id > 0)
-        {
-            @Html.Raw("Editar Grade de Aula")
-            ;
-        }
-        else
-        {
-            @Html.Raw("Incluir Grade de Aula")
-            ;
-        }
+    <h4>
+        Cadastro de Aulas
     </h4>
 </div>
 
@@ -28,24 +21,21 @@
 
     <div class="row">
         <div class="col-md-6">
-            <input asp-for="Id" type="hidden" class="form-control">
-            <input asp-for="IdProfessor" type="hidden" class="form-control">
-            <input asp-for="IdMateria" type="hidden" class="form-control">
+            <input id="Id" type="hidden" class="form-control" />
             <label class="form-label">Turma</label>
-            <select asp-for="IdTurma" asp-items="@ViewBag.Turmas" class="form-control"></select>
+            <select id="IdTurma" asp-items="@ViewBag.Turmas"  class="form-control" onchange="Pesquisar()"></select>
         </div>
     </div>
 
     <div id="divItem" hidden>
         <div class="row" id="divErroItem">
             <div class="col-md-6">
-                <input asp-for="Id" type="hidden" class="form-control">
                 <label class="form-label">Professor</label>
-                <select asp-for="IdProfessor" asp-items="@ViewBag.Professores" class="form-control"></select>
+                <select id="IdProfessor" asp-items="@ViewBag.Professores" class="form-control"></select>
             </div>
             <div class="col-md-6">
                 <label class="form-label">Matéria</label>
-                <select asp-for="IdMateria" asp-items="@ViewBag.Materias" class="form-control"></select>
+                <select id="IdMateria" asp-items="@ViewBag.Materias" class="form-control"></select>
             </div>
         </div>
     </div>
@@ -67,11 +57,26 @@
 
 <script>
 
+    var idTurma = @ViewBag.IdTurma;
+
+    function Editar(id,idProfessor,idMateria){
+        $('#Id').val(id);
+        $('#IdProfessor').val(idProfessor);
+        $('#IdMateria').val(idMateria);
+        debugger;
+
+        $('#divItem').prop('hidden', false);
+
+    }
+
     function Voltar() {
         window.location.href = "https://localhost:5001/GradeAula";
     }
 
     window.onload = function () {
+        if (idTurma != null){
+            $('#IdTurma').val(idTurma).prop('disabled',true);
+        }
         Pesquisar();
     }
 
@@ -86,9 +91,9 @@
     }
 
     function Pesquisar() {
-        var result = $('#Id').val(); 
-        var url = '/GradeAula/ListaPartialView';
-        var parametros = { idGradeAula: result };
+        var result = $('#IdTurma').val(); 
+        var url = '/GradeAula/ListaPartialViewDetalhe';
+        var parametros = { idTurma: result };
         $.get(url, parametros) 
             .done(function (data) {
                 $('#divpartialitens').html(data);  

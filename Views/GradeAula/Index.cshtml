@@ -15,14 +15,22 @@
     <input type="button" value="Limpar" onclick="Limpar()" class="btn btn-primary">
     <input type="button" value="Pesquisar" onclick="Pesquisar()" class="btn btn-primary">
 
-    <a asp-area="" asp-controller="GradeAula" asp-action="Detalhe"><input type="button" value="Novo"
-            class="btn btn-primary" style="margin-top: 30px; margin-bottom: 30px;"></a>
+    <input type="button" value="Novo"
+        class="btn btn-primary" style="margin-top: 30px; margin-bottom: 30px;" onclick="Adicionar()">
     <div id="divpartial">
         <partial name="~/Views/GradeAula/ListaPartialView.cshtml" />
     </div>
 </div>
 
 <script>
+
+    function Adicionar () {
+        
+        var idEscola = $('#idEscola').val();
+        var url = 'GradeAula/Detalhe/?idEscola='+idEscola;
+        window.location.href = url;
+        
+    }
 
     function Limpar() {
         $('#textopesquisa').val(''); 
