@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using Escola.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using X.PagedList;
 
@@ -22,18 +24,21 @@ namespace Escola.Controllers
 
         public IActionResult Index(int? pagina)
         {
-            var nome = "";          
+            var nome = "";  
+            var idEscola = 1;      
             int numeroPagina = (pagina ?? 1);
 
             SqlParameter[] parametros = new SqlParameter[]{
-                new SqlParameter("@nome", nome)
+                new SqlParameter("@nome", nome),
+                new SqlParameter("@idEscola", idEscola)
             };
             List<Models.Aluno> alunos = _context.RetornarLista<Models.Aluno>("sp_consultarAluno", parametros);
-            
+
+            ViewBagEscolas();
             return View(alunos.ToPagedList(numeroPagina, itensPorPagina));
         }
 
-        public IActionResult Detalhe(int id)
+        public IActionResult Detalhe(int id, int idEscola)
         {
             Models.Aluno aluno = new Models.Aluno();
             if (id > 0)  {
@@ -41,8 +46,11 @@ namespace Escola.Controllers
                 new SqlParameter("@identificacao", id)
             };
                 aluno = _context.ListarObjeto<Models.Aluno>("sp_buscarPessoaPorId", parametros); 
+            } else {
+                aluno.IdEscola = idEscola;
             }
 
+            ViewBagTurmas(id > 0 ? aluno.IdEscola : idEscola);
             return View(aluno);
         }
 
@@ -111,6 +119,7 @@ namespace Escola.Controllers
                     ModelState.AddModelError("", retorno.Mensagem);                    
                 }
             }
+
             return View(aluno);
         }
 
@@ -124,9 +133,10 @@ namespace Escola.Controllers
             return new JsonResult(new {Sucesso = retorno.Mensagem == "Excluído", Mensagem = retorno.Mensagem });
         }
 
-        public PartialViewResult ListaPartialView(string nome){
+        public PartialViewResult ListaPartialView(string nome,int idEscola){
             SqlParameter[] parametros = new SqlParameter[]{
-                new SqlParameter("@nome", nome)
+                new SqlParameter("@nome", nome),
+                new SqlParameter("@idEscola", idEscola)
             };
             List<Models.Aluno> alunos = _context.RetornarLista<Models.Aluno>("sp_consultarAluno", parametros);
             if (string.IsNullOrEmpty(nome)){
@@ -135,7 +145,33 @@ namespace Escola.Controllers
             HttpContext.Session.SetString("TextoPesquisa", nome);
             }
 
+            HttpContext.Session.SetInt32("IdEscola", idEscola);
+
             return PartialView(alunos.ToPagedList(1, itensPorPagina));
+        }
+
+        private void ViewBagEscolas(){
+            SqlParameter[] param = new SqlParameter[]{
+                new SqlParameter("@nome", "")
+            };
+            List<Models.Escola> escolas = new List<Models.Escola>(); 
+            escolas = _context.RetornarLista<Models.Escola>("sp_consultarEscola", param);
+            
+            ViewBag.Escolas = escolas.Select(c => new SelectListItem(){
+                Text= c.Nome, Value= c.Id.ToString()
+            }).ToList();
+        }
+
+        private void ViewBagTurmas(int idEscola){
+            SqlParameter[] param = new SqlParameter[]{
+                new SqlParameter("@idEscola", idEscola)
+            };
+            List<Models.Turma> turmas = new List<Models.Turma>(); 
+            turmas = _context.RetornarLista<Models.Turma>("sp_consultarTurma", param);
+            
+            ViewBag.Turmas = turmas.Select(c => new SelectListItem(){
+                Text= c.Id +" - "+ c.Tipo +" - "+ c.Serie +" - "+ c.Descricao, Value= c.Id.ToString()
+            }).ToList();
         }
       
 

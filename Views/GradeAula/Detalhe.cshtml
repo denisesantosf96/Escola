@@ -63,7 +63,7 @@
         $('#Id').val(id);
         $('#IdProfessor').val(idProfessor);
         $('#IdMateria').val(idMateria);
-        debugger;
+        //debugger;
 
         $('#divItem').prop('hidden', false);
 
@@ -102,19 +102,14 @@
 
     function Salvar() {
         var idGradeAula = $('#Id').val();
-        var idTurma = $('#IdTurma').val();
+        var idTurmaDetalhe = $('#IdTurma').val();
         var idProfessor = $('#IdProfessor').val();
         var idMateria = $('#IdMateria').val();
-        //debugger;
-
-        if (idTurma == "") {
-            $('#divErroItem').html("Escolha uma opção, por favor");
-            return;
-        }
-        
+        debugger;
+ 
         var url = '/GradeAula/Detalhe';
         var parametros = {
-            Id: idGradeAula, IdTurma: idTurma, IdProfessor: idProfessor,
+            Id: idGradeAula, IdTurma: idTurmaDetalhe, IdProfessor: idProfessor,
             IdMateria: idMateria
         };
         $.post(url, parametros)

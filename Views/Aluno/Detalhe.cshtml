@@ -108,8 +108,8 @@
             <input asp-for="NomePai" type="text" class="form-control">
         </div>
         <div class="col-md-6">
-            <label for="inputIdTurma" class="form-label">IdTurma</label>
-            <input asp-for="IdTurma" type="text" class="form-control">
+            <label class="form-label">Turma</label>
+            <select id="IdTurma" asp-items="@ViewBag.Turmas"  class="form-control"></select>
         </div>
     </div>
 
@@ -130,5 +130,6 @@
         $("#CPF").inputmask('999.999.999-99');
         $("#Telefone").inputmask('(99)99999-9999');
     }
+    
 
 </script>
