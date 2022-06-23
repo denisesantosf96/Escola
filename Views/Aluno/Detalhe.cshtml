@@ -25,6 +25,7 @@
     <div class="row">
         <div class="col-md-6">
             <input asp-for="Id" type="hidden" class="form-control">
+            <input asp-for="IdEscola" type="hidden" class="form-control">
             <label for="inputNome" class="form-label">Nome</label>
             <input asp-for="Nome" type="text" class="form-control">
         </div>
@@ -129,7 +130,8 @@
         $("#DataNascimento").inputmask('99/99/9999');
         $("#CPF").inputmask('999.999.999-99');
         $("#Telefone").inputmask('(99)99999-9999');
+
     }
-    
+   
 
 </script>

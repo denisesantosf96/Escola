@@ -31,7 +31,7 @@
         var result = $('#textopesquisa').val();
         var idEscola = $('#idEscola').val();
         var url = "/Aluno/ListaPartialView";
-        var parametros = { nome: result, idEscola : idEscola };
+        var parametros = { idEscola : idEscola };
         $.get(url, parametros) 
             .done(function (data) {
                 $('#divpartial').html(data);  

@@ -24,12 +24,10 @@ namespace Escola.Controllers
 
         public IActionResult Index(int? pagina)
         {
-            var nome = "";  
             var idEscola = 1;      
             int numeroPagina = (pagina ?? 1);
 
             SqlParameter[] parametros = new SqlParameter[]{
-                new SqlParameter("@nome", nome),
                 new SqlParameter("@idEscola", idEscola)
             };
             List<Models.Aluno> alunos = _context.RetornarLista<Models.Aluno>("sp_consultarAluno", parametros);
@@ -56,6 +54,9 @@ namespace Escola.Controllers
 
         [HttpPost]
         public IActionResult Detalhe(Models.Aluno aluno){
+
+            string mensagem = "";
+
             if(string.IsNullOrEmpty(aluno.Nome)){
                 ModelState.AddModelError("", "O nome não pode ser vazio");
             }    
@@ -99,7 +100,8 @@ namespace Escola.Controllers
                     new SqlParameter("@DataNascimento", aluno.DataNascimento),
                     new SqlParameter("@NomeMae", aluno.NomeMae),
                     new SqlParameter("@NomePai", aluno.NomePai),
-                    new SqlParameter("@IdTurma", aluno.IdTurma)
+                    new SqlParameter("@IdTurma", aluno.IdTurma),
+                    new SqlParameter("@IdEscola", aluno.IdEscola)
 
                 };
                 if (aluno.Id > 0){
@@ -114,13 +116,13 @@ namespace Escola.Controllers
                 var retorno = _context.ListarObjeto<RetornoProcedure>("sp_salvarPessoa", parametros.ToArray());
             
                 if (retorno.Mensagem == "Ok"){
-                    return RedirectToAction("Index");
+                    return new JsonResult(new {Sucesso = retorno.Mensagem == "Ok"});
                 } else {
-                    ModelState.AddModelError("", retorno.Mensagem);                    
+                    mensagem = retorno.Mensagem;                
                 }
             }
 
-            return View(aluno);
+            return new JsonResult(new {Sucesso = false, Mensagem = mensagem});
         }
 
         public JsonResult Excluir(int id){
@@ -133,18 +135,12 @@ namespace Escola.Controllers
             return new JsonResult(new {Sucesso = retorno.Mensagem == "Excluído", Mensagem = retorno.Mensagem });
         }
 
-        public PartialViewResult ListaPartialView(string nome,int idEscola){
+        public PartialViewResult ListaPartialView(int idEscola){
             SqlParameter[] parametros = new SqlParameter[]{
-                new SqlParameter("@nome", nome),
                 new SqlParameter("@idEscola", idEscola)
             };
             List<Models.Aluno> alunos = _context.RetornarLista<Models.Aluno>("sp_consultarAluno", parametros);
-            if (string.IsNullOrEmpty(nome)){
-                HttpContext.Session.Remove("TextoPesquisa");
-            } else {
-            HttpContext.Session.SetString("TextoPesquisa", nome);
-            }
-
+            
             HttpContext.Session.SetInt32("IdEscola", idEscola);
 
             return PartialView(alunos.ToPagedList(1, itensPorPagina));
@@ -162,9 +158,9 @@ namespace Escola.Controllers
             }).ToList();
         }
 
-        private void ViewBagTurmas(int idEscola){
+        private void ViewBagTurmas(int idescola){
             SqlParameter[] param = new SqlParameter[]{
-                new SqlParameter("@idEscola", idEscola)
+                new SqlParameter("@idEscola", idescola)
             };
             List<Models.Turma> turmas = new List<Models.Turma>(); 
             turmas = _context.RetornarLista<Models.Turma>("sp_consultarTurma", param);
