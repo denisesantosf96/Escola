@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using Escola.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using X.PagedList;
 
@@ -30,6 +32,7 @@ namespace Escola.Controllers
             };
             List<Models.Professor> professores = _context.RetornarLista<Models.Professor>("sp_consultarProfessor", parametros);
             
+            ViewBagEscolas();
             return View(professores.ToPagedList(numeroPagina, itensPorPagina));
         }
 
@@ -40,7 +43,7 @@ namespace Escola.Controllers
                 SqlParameter[] parametros = new SqlParameter[]{
                 new SqlParameter("@identificacao", id)
             };
-                professor = _context.ListarObjeto<Models.Professor>("sp_buscarPessoaPorId", parametros); 
+                professor = _context.ListarObjeto<Models.Professor>("sp_buscarProfessorPorId", parametros); 
             }
 
             return View(professor);
@@ -129,13 +132,27 @@ namespace Escola.Controllers
                 new SqlParameter("@nome", nome)
             };
             List<Models.Professor> professores = _context.RetornarLista<Models.Professor>("sp_consultarProfessor", parametros);
+            
             if (string.IsNullOrEmpty(nome)){
                 HttpContext.Session.Remove("TextoPesquisa");
             } else {
             HttpContext.Session.SetString("TextoPesquisa", nome);
             }
 
+
             return PartialView(professores.ToPagedList(1, itensPorPagina));
+        }
+
+        private void ViewBagEscolas(){
+            SqlParameter[] param = new SqlParameter[]{
+                new SqlParameter("@nome", "")
+            };
+            List<Models.Escola> escolas = new List<Models.Escola>(); 
+            escolas = _context.RetornarLista<Models.Escola>("sp_consultarEscola", param);
+            
+            ViewBag.Escolas = escolas.Select(c => new SelectListItem(){
+                Text= c.Nome, Value= c.Id.ToString()
+            }).ToList();
         }
       
 

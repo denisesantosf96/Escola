@@ -23,9 +23,10 @@ namespace Escola.Models
        public string NomeMae { get; set; }
        public string NomePai { get; set; }
        public int IdTurma { get; set; }
-       public int IdEscola { get; set; }
        public string Tipo { get; set; }
        public string Descricao { get; set; }
        public string Serie { get; set; }
+       public int IdEscola { get; set; }
+       
     }
 }

@@ -43,7 +43,7 @@ namespace Escola.Controllers
                 SqlParameter[] parametros = new SqlParameter[]{
                 new SqlParameter("@identificacao", id)
             };
-                aluno = _context.ListarObjeto<Models.Aluno>("sp_buscarPessoaPorId", parametros); 
+                aluno = _context.ListarObjeto<Models.Aluno>("sp_buscarAlunoPorId", parametros); 
             } else {
                 aluno.IdEscola = idEscola;
             }
@@ -54,8 +54,6 @@ namespace Escola.Controllers
 
         [HttpPost]
         public IActionResult Detalhe(Models.Aluno aluno){
-
-            string mensagem = "";
 
             if(string.IsNullOrEmpty(aluno.Nome)){
                 ModelState.AddModelError("", "O nome não pode ser vazio");
@@ -100,8 +98,7 @@ namespace Escola.Controllers
                     new SqlParameter("@DataNascimento", aluno.DataNascimento),
                     new SqlParameter("@NomeMae", aluno.NomeMae),
                     new SqlParameter("@NomePai", aluno.NomePai),
-                    new SqlParameter("@IdTurma", aluno.IdTurma),
-                    new SqlParameter("@IdEscola", aluno.IdEscola)
+                    new SqlParameter("@IdTurma", aluno.IdTurma)
 
                 };
                 if (aluno.Id > 0){
@@ -116,13 +113,14 @@ namespace Escola.Controllers
                 var retorno = _context.ListarObjeto<RetornoProcedure>("sp_salvarPessoa", parametros.ToArray());
             
                 if (retorno.Mensagem == "Ok"){
-                    return new JsonResult(new {Sucesso = retorno.Mensagem == "Ok"});
+                    return RedirectToAction("Index");
                 } else {
-                    mensagem = retorno.Mensagem;                
+                    ModelState.AddModelError("", retorno.Mensagem);                
                 }
             }
 
-            return new JsonResult(new {Sucesso = false, Mensagem = mensagem});
+            ViewBagTurmas(aluno.IdEscola);
+            return View(aluno);
         }
 
         public JsonResult Excluir(int id){
@@ -158,9 +156,9 @@ namespace Escola.Controllers
             }).ToList();
         }
 
-        private void ViewBagTurmas(int idescola){
+        private void ViewBagTurmas(int idEscola){
             SqlParameter[] param = new SqlParameter[]{
-                new SqlParameter("@idEscola", idescola)
+                new SqlParameter("@idEscola", idEscola)
             };
             List<Models.Turma> turmas = new List<Models.Turma>(); 
             turmas = _context.RetornarLista<Models.Turma>("sp_consultarTurma", param);
