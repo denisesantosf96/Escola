@@ -8,6 +8,11 @@ namespace Escola.Models
         public string DescricaoAvaliacao { get; set; }    
         public decimal Nota { get; set; } 
         public string Nome { get; set; }
+        public int IdEscola { get; set; }
+        public int IdTurma { get; set; }
+        public string Tipo { get; set; }
+        public string Descricao { get; set; }
+        public string Serie { get; set; }
 
     }
 }

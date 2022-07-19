@@ -24,11 +24,11 @@ namespace Escola.Controllers
 
         public IActionResult Index(int? pagina)
         {
-            var idAluno = 1;        
+            var idEscola = 1;        
             int numeroPagina = (pagina ?? 1);
 
             SqlParameter[] parametros = new SqlParameter[]{
-                new SqlParameter("@idAluno",idAluno)
+                new SqlParameter("@idEscola", idEscola)
 
             };
             List<Models.Boletim> boletins = _context.RetornarLista<Models.Boletim>("sp_consultarBoletim", parametros);
@@ -48,7 +48,6 @@ namespace Escola.Controllers
             }
 
             ViewBagAlunos();
-            ViewBagEscolas();
             return View(boletim);
         }
 
@@ -92,15 +91,26 @@ namespace Escola.Controllers
             return new JsonResult(new {Sucesso = retorno.Mensagem == "Excluído", Mensagem = retorno.Mensagem });
         }
 
-        public PartialViewResult ListaPartialView(int idAluno){
+        public PartialViewResult ListaPartialView(int idEscola){
             SqlParameter[] parametros = new SqlParameter[]{
-                new SqlParameter("@idAluno", idAluno)
+                new SqlParameter("@idEscola", idEscola)
             };
             List<Models.Boletim> boletins = _context.RetornarLista<Models.Boletim>("sp_consultarBoletim", parametros);
             
-            HttpContext.Session.SetInt32("IdAluno", idAluno);
+            HttpContext.Session.SetInt32("IdEscola", idEscola);
 
             return PartialView(boletins.ToPagedList(1, itensPorPagina));
+        }
+
+        public PartialViewResult ListaPartialViewDetalhe(int idTurma){
+            SqlParameter[] parametros = new SqlParameter[]{
+                new SqlParameter("@identificacao", idTurma)
+            };
+            List<Models.GradeAula> gradeaulas = _context.RetornarLista<Models.GradeAula>("sp_buscarBoletimPorId", parametros);
+
+            HttpContext.Session.SetInt32("IdTurma", idTurma);
+
+            return PartialView(gradeaulas.ToPagedList(1, itensPorPagina));
         }
 
         private void ViewBagEscolas(){
