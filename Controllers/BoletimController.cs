@@ -37,7 +37,7 @@ namespace Escola.Controllers
             return View(boletins.ToPagedList(numeroPagina, itensPorPagina));
         }
 
-        public IActionResult Detalhe(int id)
+        public IActionResult Detalhe(int id, int idEscola)
         {
             Models.Boletim boletim = new Models.Boletim();
             if (id > 0)  {
@@ -45,9 +45,12 @@ namespace Escola.Controllers
                 new SqlParameter("@identificacao", id)
             };
                 boletim = _context.ListarObjeto<Models.Boletim>("sp_buscarBoletimPorId", parametros); 
+            } else {
+                boletim.IdEscola = idEscola;
             }
 
             ViewBagAlunos();
+            ViewBagTurmas(id > 0 ? boletim.IdEscola : idEscola);
             return View(boletim);
         }
 
@@ -80,6 +83,7 @@ namespace Escola.Controllers
 
             ViewBagEscolas();
             ViewBagAlunos();
+            ViewBagTurmas(boletim.IdEscola);
             return View(boletim);
         }
 
@@ -102,15 +106,15 @@ namespace Escola.Controllers
             return PartialView(boletins.ToPagedList(1, itensPorPagina));
         }
 
-        public PartialViewResult ListaPartialViewDetalhe(int idTurma){
+        public PartialViewResult ListaPartialViewDetalhe(int id){
             SqlParameter[] parametros = new SqlParameter[]{
-                new SqlParameter("@identificacao", idTurma)
+                new SqlParameter("@identificacao", id)
             };
-            List<Models.GradeAula> gradeaulas = _context.RetornarLista<Models.GradeAula>("sp_buscarBoletimPorId", parametros);
+            List<Models.Boletim> boletins = _context.RetornarLista<Models.Boletim>("sp_buscarBoletimPorId", parametros);
 
-            HttpContext.Session.SetInt32("IdTurma", idTurma);
+            HttpContext.Session.SetInt32("Id", id);
 
-            return PartialView(gradeaulas.ToPagedList(1, itensPorPagina));
+            return PartialView(boletins.ToPagedList(1, itensPorPagina));
         }
 
         private void ViewBagEscolas(){
@@ -134,6 +138,18 @@ namespace Escola.Controllers
             
             ViewBag.Alunos = alunos.Select(c => new SelectListItem(){
                 Text= c.Nome, Value= c.Id.ToString()
+            }).ToList();
+        }
+
+        private void ViewBagTurmas(int idEscola){
+            SqlParameter[] param = new SqlParameter[]{
+                new SqlParameter("@idEscola", idEscola)
+            };
+            List<Models.Turma> turmas = new List<Models.Turma>(); 
+            turmas = _context.RetornarLista<Models.Turma>("sp_consultarTurma", param);
+            
+            ViewBag.Turmas = turmas.Select(c => new SelectListItem(){
+                Text= c.Id +" - "+ c.Tipo +" - "+ c.Serie +" - "+ c.Descricao, Value= c.Id.ToString()
             }).ToList();
         }
 

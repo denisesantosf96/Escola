@@ -7,11 +7,8 @@
         <tr>
 
             <th>Id</th>
-            <th>Aluno(a)</th>
-
-            <th>IdGradeAula</th>
+            <th>Aluno(a)</th>           
             <th>Avaliação</th>
-
             <th>Nota</th>
     
             <th></th>
@@ -23,10 +20,9 @@
                 <tr>
             <td>@Model[i].Id</td>
             <td>@Model[i].IdAluno - @Model[i].Nome</td>
-            <td>@Model[i].IdGradeAula</td>
             <td>@Model[i].DescricaoAvaliacao</td>
             <td>@Model[i].Nota</td>
-            <td><input type="button" value="Editar" class="btn btn-dark" onclick="Editar(@Model[i].Id,'@Model[i].IdAluno','@Model[i].DescricaoAvaliacao','@Model[i].Nota')">
+            <td><input type="button" value="Editar" class="btn btn-dark" onclick="Editar(@Model[i].Id,'@Model[i].DescricaoAvaliacao','@Model[i].Nota')">
             <input type="button" value="Excluir" class="btn btn-danger" onclick="Excluir(@Model[i].Id)"></td>
             
             </tr>

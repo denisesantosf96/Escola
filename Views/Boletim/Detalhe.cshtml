@@ -17,13 +17,12 @@
 <form method="POST" asp-action="Detalhe" asp-controller="Boletim" class="form p-5"
     style="border: 3px solid grey; background: #E6E6E6; border-radius: 15px; margin-top: 30px;">
     <div class="text-danger">@Html.ValidationSummary()</div>
-    <div class="text-danger" id="divErroItem"></div>
 
     <div class="row">
         <div class="col-md-6">
             <input asp-for="Id" type="hidden" class="form-control">
-            <label class="form-label">Aluno(a)</label>
-            <select asp-for="IdAluno" asp-items="@ViewBag.Alunos" class="form-control"></select>
+            <label class="form-label">Turma</label>
+            <select id="IdTurma" asp-items="@ViewBag.Turmas"  class="form-control" onchange="Pesquisar()" disabled></select>
         </div>
         <div class="col-md-6">
             <label class="form-label">Grade de Aula</label>
@@ -32,10 +31,18 @@
     </div>
 
 
+    <div class="row">    
+        <div class="col-md-6" >
+            <label class="form-label">Aluno(a)</label>
+            <select asp-for="IdAluno" asp-items="@ViewBag.Alunos" class="form-control"></select>
+        </div>
+    </div>
+
+
     <div id="divItem" hidden>
-        <div class="row">
+        <div class="row" id="divErroItem">
             <div class="col-md-6">
-                <label class="form-label">Avaliacao</label>
+                <label class="form-label">Descrição Avaliacao</label>
                 <input asp-for="DescricaoAvaliacao" type="text" class="form-control">
             </div>
             <div class="col-md-6">
@@ -67,7 +74,18 @@
     }
 
     window.onload = function () {
+    
         Pesquisar();
+    }
+
+    function Editar(id,avaliacao,nota){
+        $('#Id').val(id);
+        $('#DescricaoAvaliacao').val(avaliacao);
+        $('#Nota').val(nota);
+        //debugger;
+
+        $('#divItem').prop('hidden', false);
+
     }
 
     function Adicionar() {
@@ -82,8 +100,8 @@
 
     function Pesquisar() {
         var result = $('#Id').val(); 
-        var url = '/Boletim/ListaPartialView';
-        var parametros = { idBoletim: result };
+        var url = '/Boletim/ListaPartialViewDetalhe';
+        var parametros = { id: result };
         $.get(url, parametros) 
             .done(function (data) {
                 $('#divpartialitens').html(data);  
