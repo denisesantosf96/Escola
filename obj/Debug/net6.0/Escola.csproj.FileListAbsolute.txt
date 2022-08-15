@@ -40,7 +40,6 @@ D:\Programação\.NET e C#\Projetos\Escola\bin\Debug\net6.0\Escola.exe
 D:\Programação\.NET e C#\Projetos\Escola\bin\Debug\net6.0\Escola.deps.json
 D:\Programação\.NET e C#\Projetos\Escola\bin\Debug\net6.0\Escola.runtimeconfig.json
 D:\Programação\.NET e C#\Projetos\Escola\bin\Debug\net6.0\Escola.dll
-D:\Programação\.NET e C#\Projetos\Escola\bin\Debug\net6.0\ref\Escola.dll
 D:\Programação\.NET e C#\Projetos\Escola\bin\Debug\net6.0\Escola.pdb
 D:\Programação\.NET e C#\Projetos\Escola\bin\Debug\net6.0\JetBrains.Annotations.dll
 D:\Programação\.NET e C#\Projetos\Escola\bin\Debug\net6.0\System.Data.SqlClient.dll
@@ -103,3 +102,4 @@ C:\Users\denis\Downloads\Escola-master\obj\Debug\net6.0\Escola.dll
 C:\Users\denis\Downloads\Escola-master\obj\Debug\net6.0\ref\Escola.dll
 C:\Users\denis\Downloads\Escola-master\obj\Debug\net6.0\Escola.pdb
 C:\Users\denis\Downloads\Escola-master\obj\Debug\net6.0\Escola.genruntimeconfig.cache
+D:\Programação\.NET e C#\Projetos\Escola\obj\Debug\net6.0\refint\Escola.dll
