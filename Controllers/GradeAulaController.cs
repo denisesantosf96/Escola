@@ -48,10 +48,10 @@ namespace Escola.Controllers
 
         [HttpPost]
         public IActionResult Detalhe(Models.GradeAula gradeaula){
-              
+
             string mensagem = "";
 
-            if(ModelState.IsValid){
+            if (ModelState.IsValid){
            
                 List<SqlParameter> parametros = new List<SqlParameter>(){
                     new SqlParameter("@IdTurma", gradeaula.IdTurma),
@@ -64,17 +64,19 @@ namespace Escola.Controllers
                 } 
                
                 var retorno = _context.ListarObjeto<RetornoProcedure>(gradeaula.Id > 0? "sp_atualizarGradeAula" : "sp_inserirGradeAula", parametros.ToArray());
-            
-                if (retorno.Mensagem == "Ok"){
-                    return new JsonResult(new {Sucesso = retorno.Mensagem == "Ok"});
-                } else {
+
+                if (retorno.Mensagem == "Ok")
+                {
+                    return new JsonResult(new { Sucesso = retorno.Mensagem == "Ok" });
+                }
+                else
+                {
                     mensagem = retorno.Mensagem;
-                    
+
                 }
             }
 
-
-            return new JsonResult(new {Sucesso = false, Mensagem = mensagem});
+            return new JsonResult(new { Sucesso = false, Mensagem = mensagem });
         }
 
         public JsonResult Excluir(int id){
