@@ -29,9 +29,8 @@
 
     function Pesquisar() {
         var result = $('#textopesquisa').val();
-        var idEscola = $('#idEscola').val();
         var url = "/Aluno/ListaPartialView";
-        var parametros = { idEscola : idEscola };
+        var parametros = { nome: result  };
         $.get(url, parametros) 
             .done(function (data) {
                 $('#divpartial').html(data);  
