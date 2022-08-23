@@ -48,6 +48,7 @@ namespace Escola.Controllers
 
         [HttpPost]
         public IActionResult Detalhe(Models.Materia materia){
+
             if(string.IsNullOrEmpty(materia.Nome)){
                 ModelState.AddModelError("", "O nome não pode ser vazio");
             }    
@@ -55,9 +56,9 @@ namespace Escola.Controllers
             if(ModelState.IsValid){
            
                 List<SqlParameter> parametros = new List<SqlParameter>(){
-                    new SqlParameter("Nome", materia.Nome)
-
+                    new SqlParameter("@Nome", materia.Nome)
                 };
+
                 if (materia.Id > 0){
                     parametros.Add(new SqlParameter("@Identificacao", materia.Id));
                 }
@@ -66,10 +67,10 @@ namespace Escola.Controllers
                 if (retorno.Mensagem == "Ok"){
                     return RedirectToAction("Index");
                 } else {
-                    ModelState.AddModelError("", retorno.Mensagem);
-                    
+                    ModelState.AddModelError("", retorno.Mensagem);   
                 }
             }
+
             return View(materia);
         }
 

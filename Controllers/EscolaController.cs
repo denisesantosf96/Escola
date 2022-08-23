@@ -76,16 +76,16 @@ namespace Escola.Controllers
             if(ModelState.IsValid){
            
                 List<SqlParameter> parametros = new List<SqlParameter>(){
-                    new SqlParameter("Nome", escola.Nome),
-                    new SqlParameter("Endereco", escola.Endereco),
-                    new SqlParameter("Numero", escola.Numero),
-                    new SqlParameter("Complemento", escola.Complemento),
-                    new SqlParameter("Bairro", escola.Bairro),
-                    new SqlParameter("Cidade", escola.Cidade),
-                    new SqlParameter("Estado", escola.Estado),
-                    new SqlParameter("Pais", escola.Pais),
-                    new SqlParameter("CEP", escola.CEP),
-                    new SqlParameter("Telefone", escola.Telefone)
+                    new SqlParameter("@Nome", escola.Nome),
+                    new SqlParameter("@Endereco", escola.Endereco),
+                    new SqlParameter("@Numero", escola.Numero),
+                    new SqlParameter("@Complemento", escola.Complemento),
+                    new SqlParameter("@Bairro", escola.Bairro),
+                    new SqlParameter("@Cidade", escola.Cidade),
+                    new SqlParameter("@Estado", escola.Estado),
+                    new SqlParameter("@Pais", escola.Pais),
+                    new SqlParameter("@CEP", escola.CEP),
+                    new SqlParameter("@Telefone", escola.Telefone)
 
                 };
                 if (escola.Id > 0){

@@ -51,30 +51,23 @@ namespace Escola.Controllers
 
             string mensagem = "";
 
-            if (ModelState.IsValid){
-           
+
                 List<SqlParameter> parametros = new List<SqlParameter>(){
                     new SqlParameter("@IdTurma", gradeaula.IdTurma),
                     new SqlParameter("@IdProfessor", gradeaula.IdProfessor),
                     new SqlParameter("@IdMateria", gradeaula.IdMateria)
-
                 };
+
                 if (gradeaula.Id > 0){
                     parametros.Add(new SqlParameter("@Identificacao", gradeaula.Id));
-                } 
-               
-                var retorno = _context.ListarObjeto<RetornoProcedure>(gradeaula.Id > 0? "sp_atualizarGradeAula" : "sp_inserirGradeAula", parametros.ToArray());
+                }
+                var retorno = _context.ListarObjeto<RetornoProcedure>(gradeaula.Id > 0 ? "sp_atualizarGradeAula" : "sp_inserirGradeAula", parametros.ToArray());
 
-                if (retorno.Mensagem == "Ok")
-                {
+                if (retorno.Mensagem == "Ok"){
                     return new JsonResult(new { Sucesso = retorno.Mensagem == "Ok" });
-                }
-                else
-                {
+                } else {
                     mensagem = retorno.Mensagem;
-
                 }
-            }
 
             return new JsonResult(new { Sucesso = false, Mensagem = mensagem });
         }

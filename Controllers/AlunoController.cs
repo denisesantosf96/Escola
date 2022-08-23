@@ -8,14 +8,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using X.PagedList;
 
-namespace Escola.Controllers 
+namespace Escola.Controllers
 {
     public class AlunoController : Controller
     {
-        private readonly ILogger<AlunoController> _logger;  
+        private readonly ILogger<AlunoController> _logger;
         private readonly DadosContext _context;
         const int itensPorPagina = 5;
-  
+
         public AlunoController(ILogger<AlunoController> logger, DadosContext context)
         {
             _logger = logger;
@@ -24,11 +24,11 @@ namespace Escola.Controllers
 
         public IActionResult Index(int? pagina)
         {
-            var idEscola = 1;      
+            var nome = "";
             int numeroPagina = (pagina ?? 1);
 
             SqlParameter[] parametros = new SqlParameter[]{
-                new SqlParameter("@idEscola", idEscola)
+                new SqlParameter("@nome", nome)
             };
             List<Models.Aluno> alunos = _context.RetornarLista<Models.Aluno>("sp_consultarAluno", parametros);
 
@@ -39,12 +39,15 @@ namespace Escola.Controllers
         public IActionResult Detalhe(int id, int idEscola)
         {
             Models.Aluno aluno = new Models.Aluno();
-            if (id > 0)  {
+            if (id > 0)
+            {
                 SqlParameter[] parametros = new SqlParameter[]{
                 new SqlParameter("@identificacao", id)
             };
-                aluno = _context.ListarObjeto<Models.Aluno>("sp_buscarAlunoPorId", parametros); 
-            } else {
+                aluno = _context.ListarObjeto<Models.Aluno>("sp_buscarAlunoPorId", parametros);
+            }
+            else
+            {
                 aluno.IdEscola = idEscola;
             }
 
@@ -53,35 +56,45 @@ namespace Escola.Controllers
         }
 
         [HttpPost]
-        public IActionResult Detalhe(Models.Aluno aluno){
+        public IActionResult Detalhe(Models.Aluno aluno)
+        {
 
-            if(string.IsNullOrEmpty(aluno.Nome)){
+            if (string.IsNullOrEmpty(aluno.Nome))
+            {
                 ModelState.AddModelError("", "O nome não pode ser vazio");
-            }    
-            if(string.IsNullOrEmpty(aluno.Endereco)){
+            }
+            if (string.IsNullOrEmpty(aluno.Endereco))
+            {
                 ModelState.AddModelError("", "O endereco deve ser informado");
             }
-            if(string.IsNullOrEmpty(aluno.Bairro)){
+            if (string.IsNullOrEmpty(aluno.Bairro))
+            {
                 ModelState.AddModelError("", "O bairro deve ser informado");
             }
-            if(string.IsNullOrEmpty(aluno.Cidade)){
+            if (string.IsNullOrEmpty(aluno.Cidade))
+            {
                 ModelState.AddModelError("", "A cidade deve ser informado");
             }
-            if(string.IsNullOrEmpty(aluno.Estado)){
+            if (string.IsNullOrEmpty(aluno.Estado))
+            {
                 ModelState.AddModelError("", "O estado deve ser informado");
             }
-            if(string.IsNullOrEmpty(aluno.Pais)){
-                ModelState.AddModelError("", "O país deve ser informado"); 
+            if (string.IsNullOrEmpty(aluno.Pais))
+            {
+                ModelState.AddModelError("", "O país deve ser informado");
             }
-            if(string.IsNullOrEmpty(aluno.CEP)){
+            if (string.IsNullOrEmpty(aluno.CEP))
+            {
                 ModelState.AddModelError("", "O CEP deve ser informado");
             }
-            if(string.IsNullOrEmpty(aluno.Telefone)){
+            if (string.IsNullOrEmpty(aluno.Telefone))
+            {
                 ModelState.AddModelError("", "O telefone deve ser informado");
             }
 
-            if(ModelState.IsValid){
-           
+            if (ModelState.IsValid)
+            {
+
                 List<SqlParameter> parametros = new List<SqlParameter>(){
                     new SqlParameter("@Nome", aluno.Nome),
                     new SqlParameter("@CPF", aluno.CPF),
@@ -101,21 +114,27 @@ namespace Escola.Controllers
                     new SqlParameter("@IdTurma", aluno.IdTurma)
 
                 };
-                if (aluno.Id > 0){
+                if (aluno.Id > 0)
+                {
                     parametros.Add(new SqlParameter("@Id", aluno.Id));
                     parametros.Add(new SqlParameter("@Acao", 2));
                     parametros.Add(new SqlParameter("@Opcao", "aluno"));
-                } else {
+                }
+                else
+                {
                     parametros.Add(new SqlParameter("@Acao", 1));
                     parametros.Add(new SqlParameter("@Opcao", "aluno"));
                 }
 
                 var retorno = _context.ListarObjeto<RetornoProcedure>("sp_salvarPessoa", parametros.ToArray());
-            
-                if (retorno.Mensagem == "Ok"){
+
+                if (retorno.Mensagem == "Ok")
+                {
                     return RedirectToAction("Index");
-                } else {
-                    ModelState.AddModelError("", retorno.Mensagem);                
+                }
+                else
+                {
+                    ModelState.AddModelError("", retorno.Mensagem);
                 }
             }
 
@@ -123,51 +142,63 @@ namespace Escola.Controllers
             return View(aluno);
         }
 
-        public JsonResult Excluir(int id){
+        public JsonResult Excluir(int id)
+        {
             SqlParameter[] parametros = new SqlParameter[]{
                 new SqlParameter("@Id", id),
                 new SqlParameter("@Acao", 0),
                 new SqlParameter("@Opcao", "aluno")
             };
             var retorno = _context.ListarObjeto<RetornoProcedure>("sp_salvarPessoa", parametros);
-            return new JsonResult(new {Sucesso = retorno.Mensagem == "Excluído", Mensagem = retorno.Mensagem });
+            return new JsonResult(new { Sucesso = retorno.Mensagem == "Excluído", Mensagem = retorno.Mensagem });
         }
 
-        public PartialViewResult ListaPartialView(int idEscola){
+        public PartialViewResult ListaPartialView(string nome)
+        {
             SqlParameter[] parametros = new SqlParameter[]{
-                new SqlParameter("@idEscola", idEscola)
+                new SqlParameter("@nome", nome)
             };
             List<Models.Aluno> alunos = _context.RetornarLista<Models.Aluno>("sp_consultarAluno", parametros);
-            
-            HttpContext.Session.SetInt32("IdEscola", idEscola);
+
+            if (string.IsNullOrEmpty(nome)){
+                HttpContext.Session.Remove("TextoPesquisa");
+            } else {
+                HttpContext.Session.SetString("TextoPesquisa", nome);
+            }
 
             return PartialView(alunos.ToPagedList(1, itensPorPagina));
         }
 
-        private void ViewBagEscolas(){
+        private void ViewBagEscolas()
+        {
             SqlParameter[] param = new SqlParameter[]{
                 new SqlParameter("@nome", "")
             };
-            List<Models.Escola> escolas = new List<Models.Escola>(); 
+            List<Models.Escola> escolas = new List<Models.Escola>();
             escolas = _context.RetornarLista<Models.Escola>("sp_consultarEscola", param);
-            
-            ViewBag.Escolas = escolas.Select(c => new SelectListItem(){
-                Text= c.Nome, Value= c.Id.ToString()
+
+            ViewBag.Escolas = escolas.Select(c => new SelectListItem()
+            {
+                Text = c.Nome,
+                Value = c.Id.ToString()
             }).ToList();
         }
 
-        private void ViewBagTurmas(int idEscola){
+        private void ViewBagTurmas(int idEscola)
+        {
             SqlParameter[] param = new SqlParameter[]{
                 new SqlParameter("@idEscola", idEscola)
             };
-            List<Models.Turma> turmas = new List<Models.Turma>(); 
+            List<Models.Turma> turmas = new List<Models.Turma>();
             turmas = _context.RetornarLista<Models.Turma>("sp_consultarTurma", param);
-            
-            ViewBag.Turmas = turmas.Select(c => new SelectListItem(){
-                Text= c.Id +" - "+ c.Tipo +" - "+ c.Serie +" - "+ c.Descricao, Value= c.Id.ToString()
+
+            ViewBag.Turmas = turmas.Select(c => new SelectListItem()
+            {
+                Text = c.Id + " - " + c.Tipo + " - " + c.Serie + " - " + c.Descricao,
+                Value = c.Id.ToString()
             }).ToList();
         }
-      
+
 
     }
 }

@@ -44,7 +44,7 @@
         style="margin-top: 30px; margin-bottom: 15px;"></td>
     <input type="button" value="Salvar" class="btn btn-success" onclick="Salvar()"
         style="margin-top: 30px; margin-bottom: 15px;">
-    <input id="novo" type="button" value="Novo" class="btn btn-success" onclick="Adicionar()"
+    <input id="novo" type="button" value="Novo" class="btn btn-success" onclick="Mostrar()"
         style="margin-top: 30px; margin-bottom: 15px;"></td>
     <input type="button" value="Cancelar" onclick="Cancelar()" class="btn btn-danger"
         style="margin-top: 30px; margin-bottom: 15px;"></td>
@@ -70,7 +70,7 @@
     }
 
     function Voltar() {
-        window.location.href = "https://localhost:5001/GradeAula";
+        window.location.href = "https://localhost:44370/GradeAula";
     }
 
     window.onload = function () {
@@ -80,7 +80,7 @@
         Pesquisar();
     }
 
-    function Adicionar() {
+    function Mostrar() {
         $('#divItem').prop('hidden', false);
         Limpar();
     }
@@ -127,7 +127,6 @@
     function Cancelar(){
         $('#divItem').prop('hidden', true);
         Limpar();
-        
     }
 
 </script>
