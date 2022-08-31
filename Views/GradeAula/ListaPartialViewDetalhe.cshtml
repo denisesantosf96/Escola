@@ -25,7 +25,7 @@
             <td>@Model[i].Nome</td>
             <td>@Model[i].IdMateria</td>
             <td>@Model[i].NomeMateria</td>
-            <td><input type="button" value="Editar" class="btn btn-dark" onclick="Editar(@Model[i].Id,'@Model[i].IdProfessor','@Model[i].IdMateria')">
+            <td><input type="button" value="Editar" class="btn btn-dark" onclick="EditarDetalhe(@Model[i].Id,'@Model[i].IdProfessor','@Model[i].IdMateria')">
             <input type="button" value="Excluir" class="btn btn-danger" onclick="Excluir(@Model[i].Id)"></td>
             
             </tr>

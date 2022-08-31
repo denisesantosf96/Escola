@@ -44,7 +44,7 @@
         style="margin-top: 30px; margin-bottom: 15px;"></td>
     <input type="button" value="Salvar" class="btn btn-success" onclick="Salvar()"
         style="margin-top: 30px; margin-bottom: 15px;">
-    <input id="novo" type="button" value="Novo" class="btn btn-success" onclick="Mostrar()"
+        <input id="novo" type="button" value="Novo" class="btn btn-success" onclick="Adicionar()"
         style="margin-top: 30px; margin-bottom: 15px;"></td>
     <input type="button" value="Cancelar" onclick="Cancelar()" class="btn btn-danger"
         style="margin-top: 30px; margin-bottom: 15px;"></td>
@@ -80,7 +80,7 @@
         Pesquisar();
     }
 
-    function Mostrar() {
+    function Adicionar() {
         $('#divItem').prop('hidden', false);
         Limpar();
     }

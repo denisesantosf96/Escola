@@ -37,8 +37,7 @@ namespace Escola.Controllers
         }
 
         public IActionResult Detalhe(int? idTurma, int idEscola)
-        {
-            
+        {            
             ViewBag.IdTurma = idTurma;
             ViewBagTurmas(idEscola);
             ViewBagProfessores(); 
@@ -50,7 +49,6 @@ namespace Escola.Controllers
         public IActionResult Detalhe(Models.GradeAula gradeaula){
 
             string mensagem = "";
-
 
                 List<SqlParameter> parametros = new List<SqlParameter>(){
                     new SqlParameter("@IdTurma", gradeaula.IdTurma),

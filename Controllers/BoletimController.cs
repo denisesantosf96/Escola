@@ -37,24 +37,13 @@ namespace Escola.Controllers
             return View(boletins.ToPagedList(numeroPagina, itensPorPagina));
         }
 
-        public IActionResult Detalhe(int id, int idEscola)
+        public IActionResult Detalhe(int? idTurma, int idEscola)
         {
-            Models.Boletim boletim = new Models.Boletim();
-            if (id > 0)
-            {
-                SqlParameter[] parametros = new SqlParameter[]{
-                new SqlParameter("@identificacao", id)
-            };
-                boletim = _context.ListarObjeto<Models.Boletim>("sp_buscarBoletimPorId", parametros);
-            }
-            else
-            {
-                boletim.IdEscola = idEscola;
-            }
-
+            ViewBag.IdTurma = idTurma;
+            ViewBagTurmas(idEscola);
             ViewBagAlunos();
-            ViewBagTurmas(id > 0 ? boletim.IdEscola : idEscola);
-            return View(boletim);
+            return View();
+
         }
 
         [HttpPost]
@@ -70,8 +59,8 @@ namespace Escola.Controllers
                     new SqlParameter("IdGradeAula", boletim.IdGradeAula),
                     new SqlParameter("DescricaoAvaliacao", boletim.DescricaoAvaliacao),
                     new SqlParameter("Nota", boletim.Nota)
+            };
 
-                };
             if (boletim.Id > 0)
             {
                 parametros.Add(new SqlParameter("@Identificacao", boletim.Id));
@@ -116,14 +105,14 @@ namespace Escola.Controllers
             return PartialView(boletins.ToPagedList(1, itensPorPagina));
         }
 
-        public PartialViewResult ListaPartialViewDetalhe(int id)
+        public PartialViewResult ListaPartialViewDetalhe(int idTurma)
         {
             SqlParameter[] parametros = new SqlParameter[]{
-                new SqlParameter("@identificacao", id)
+                new SqlParameter("@identificacao", idTurma)
             };
             List<Models.Boletim> boletins = _context.RetornarLista<Models.Boletim>("sp_buscarBoletimPorId", parametros);
 
-            HttpContext.Session.SetInt32("Id", id);
+            HttpContext.Session.SetInt32("IdTurma", idTurma);
 
             return PartialView(boletins.ToPagedList(1, itensPorPagina));
         }
@@ -153,7 +142,7 @@ namespace Escola.Controllers
 
             ViewBag.Alunos = alunos.Select(c => new SelectListItem()
             {
-                Text = c.Nome,
+                Text = c.Id + " - " + c.Nome,
                 Value = c.Id.ToString()
             }).ToList();
         }

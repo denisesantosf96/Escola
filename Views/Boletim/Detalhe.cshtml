@@ -1,4 +1,4 @@
-@model Boletim
+
 @{
     ViewData["Title"] = "Adicionar um novo Boletim";
 }
@@ -20,34 +20,29 @@
 
     <div class="row">
         <div class="col-md-6">
-            <input asp-for="Id" type="hidden" class="form-control">
+            <input id="Id" type="hidden" class="form-control">
             <label class="form-label">Turma</label>
-            <select id="IdTurma" asp-items="@ViewBag.Turmas"  class="form-control" onchange="Pesquisar()" disabled></select>
+            <select id="IdTurma" asp-items="@ViewBag.Turmas"  class="form-control" onchange="Pesquisar()"></select>
         </div>
         <div class="col-md-6">
             <label class="form-label">Grade de Aula</label>
-            <input asp-for="IdGradeAula" type="text" class="form-control">
+                <input id="IdGradeAula" type="text" class="form-control">
         </div>
     </div>
-
-
-    <div class="row">    
-        <div class="col-md-6" >
-            <label class="form-label">Aluno(a)</label>
-            <select asp-for="IdAluno" asp-items="@ViewBag.Alunos" class="form-control"></select>
-        </div>
-    </div>
-
 
     <div id="divItem" hidden>
         <div class="row" id="divErroItem">
-            <div class="col-md-6">
-                <label class="form-label">Descrição Avaliacao</label>
-                <input asp-for="DescricaoAvaliacao" type="text" class="form-control">
+            <div class="col-md-4" >
+            <label class="form-label">Aluno(a)</label>
+            <select id="IdAluno" asp-items="@ViewBag.Alunos" class="form-control"></select>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
+                <label class="form-label">Descrição Avaliacao</label>
+                    <input id="DescricaoAvaliacao" type="text" class="form-control">
+            </div>
+            <div class="col-md-4">
                 <label class="form-label">Nota</label>
-                <input asp-for="Nota" type="text" class="form-control">
+                    <input id="Nota" type="text" class="form-control">
             </div>
         </div>
     </div>
@@ -69,18 +64,23 @@
 
 <script>
 
+    var idTurma = @ViewBag.IdTurma;
+
     function Voltar() {
         window.location.href = "https://localhost:44370/Boletim";
     }
 
     window.onload = function () {
-    
+            if (idTurma != null){
+                $('#IdTurma').val(idTurma).prop('disabled',true);
+            }
         Pesquisar();
     }
 
-    function Editar(id,avaliacao,nota){
+    function Editar(id,idAluno,descricaoAvaliacao,nota){
         $('#Id').val(id);
-        $('#DescricaoAvaliacao').val(avaliacao);
+        $('#IdAluno').val(idAluno);
+        $('#DescricaoAvaliacao').val(descricaoAvaliacao);
         $('#Nota').val(nota);
         //debugger;
 
@@ -94,14 +94,15 @@
     }
 
     function Limpar(){
+        $('#IdAluno').val('');
         $('#DescricaoAvaliacao').val('');
         $('#Nota').val('');
     }
 
     function Pesquisar() {
-        var result = $('#Id').val(); 
+        var result = $('#IdTurma').val(); 
         var url = '/Boletim/ListaPartialViewDetalhe';
-        var parametros = { id: result };
+        var parametros = { idTurma: result };
         $.get(url, parametros) 
             .done(function (data) {
                 $('#divpartialitens').html(data);  
@@ -112,13 +113,13 @@
         var idBoletim = $('#Id').val();
         var idAluno = $('#IdAluno').val();
         var idGradeAula = $('#IdGradeAula').val();
-        var avaliacao = $('#DescricaoAvaliacao').val();
+        var descricaoAvaliacao = $('#DescricaoAvaliacao').val();
         var nota = $('#Nota').val();
-        //debugger;
+        debugger;
         
         var url = '/Boletim/Detalhe';
         var parametros = {
-            Id: idBoletim, IdAluno: idAluno, IdGradeAula: idGradeAula, DescricaoAvaliacao: avaliacao,
+                Id: idBoletim, IdAluno: idAluno, IdGradeAula: idGradeAula, DescricaoAvaliacao: descricaoAvaliacao,
             Nota: nota
         };
         $.post(url, parametros)

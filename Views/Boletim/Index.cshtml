@@ -32,7 +32,7 @@
     function Pesquisar() {
         var result = $('#textopesquisa').val();
         var url = "/Boletim/ListaPartialView";
-        var parametros = { idAluno: result };
+        var parametros = { idEscola: result };
         $.get(url, parametros) 
             .done(function (data) {
                 $('#divpartial').html(data);  
