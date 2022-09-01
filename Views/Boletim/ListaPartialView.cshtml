@@ -16,7 +16,7 @@
             <tr>
                 
             <td>@Model[i].IdTurma - @Model[i].Tipo - @Model[i].Serie - @Model[i].Descricao</td>
-            <td><input type="button" value="Editar" class="btn btn-dark" onclick="javascript:window.location=`/Boletim/Detalhe/${@Model[i].Id}`">
+                <td><input type="button" value="Editar" class="btn btn-dark" onclick="javascript:window.location=`/Boletim/Detalhe/?idTurma=${@Model[i].IdTurma}&idEscola=${@Model[i].IdEscola}`">
             <input type="button" value="Excluir" class="btn btn-danger" onclick="Excluir(@Model[i].Id)"></td>
             
             </tr>

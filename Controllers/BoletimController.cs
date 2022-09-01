@@ -74,14 +74,9 @@ namespace Escola.Controllers
             else
             {
                 mensagem = retorno.Mensagem;
-
             }
 
-
-            ViewBagEscolas();
-            ViewBagAlunos();
-            ViewBagTurmas(boletim.IdEscola);
-            return View(boletim);
+            return new JsonResult(new { Sucesso = false, Mensagem = mensagem });
         }
 
         public JsonResult Excluir(int id)
