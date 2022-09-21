@@ -52,13 +52,11 @@ namespace Escola.Controllers
 
             string mensagem = "";
 
-
-
             List<SqlParameter> parametros = new List<SqlParameter>(){
-                    new SqlParameter("IdAluno", boletim.IdAluno),
-                    new SqlParameter("IdGradeAula", boletim.IdGradeAula),
-                    new SqlParameter("DescricaoAvaliacao", boletim.DescricaoAvaliacao),
-                    new SqlParameter("Nota", boletim.Nota)
+                    new SqlParameter("@IdAluno", boletim.IdAluno),
+                    new SqlParameter("@IdGradeAula", boletim.IdGradeAula),
+                    new SqlParameter("@DescricaoAvaliacao", boletim.DescricaoAvaliacao),
+                    new SqlParameter("@Nota", boletim.Nota)
             };
 
             if (boletim.Id > 0)
