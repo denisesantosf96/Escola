@@ -25,12 +25,10 @@ namespace Escola.Controllers
         public IActionResult Index(int? pagina)
         {
             var idEscola = 1;
-            var id = 1;
             int numeroPagina = (pagina ?? 1);
 
             SqlParameter[] parametros = new SqlParameter[]{
-                new SqlParameter("@idEscola", idEscola),
-                new SqlParameter("@id", id)
+                new SqlParameter("@idEscola", idEscola)
             };
             List<Models.GradeAula> gradeaulas = _context.RetornarLista<Models.GradeAula>("sp_consultarGradeAula", parametros);
 
@@ -80,16 +78,14 @@ namespace Escola.Controllers
             return new JsonResult(new {Sucesso = retorno.Mensagem == "Excluído", Mensagem = retorno.Mensagem });
         }
 
-        public PartialViewResult ListaPartialView(int idEscola,int id)
+        public PartialViewResult ListaPartialView(int idEscola)
         {
             SqlParameter[] parametros = new SqlParameter[]{
-                new SqlParameter("@idEscola", idEscola),
-                new SqlParameter("@id", id)
+                new SqlParameter("@idEscola", idEscola)
             };
             List<Models.GradeAula> gradeaulas = _context.RetornarLista<Models.GradeAula>("sp_consultarGradeAula", parametros);
 
             HttpContext.Session.SetInt32("IdEscola", idEscola);
-            HttpContext.Session.SetInt32("Id", id);
 
             return PartialView(gradeaulas.ToPagedList(1, itensPorPagina));
         }
