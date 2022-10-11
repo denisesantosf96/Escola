@@ -22,11 +22,11 @@
         <div class="col-md-6">
             <input id="Id" type="hidden" class="form-control">
             <label class="form-label">Turma</label>
-            <select id="IdTurma" asp-items="@ViewBag.Turmas"  class="form-control" onchange="Pesquisar()"></select>
+                <select id="IdTurma" asp-items="@ViewBag.Turmas"  class="form-control" onchange="Pesquisar()" onblur="TrazerIdGradeAula()"></select>
         </div>
         <div class="col-md-6">
             <label class="form-label">Grade de Aula</label>
-                <input id="IdGradeAula" type="text" class="form-control">
+            <input id="IdGradeAula" type="text" class="form-control">
         </div>
     </div>
 
@@ -48,13 +48,13 @@
     </div>
 
     <input type="button" value="Voltar" class="btn btn-success" onclick="Voltar()"
-        style="margin-top: 30px; margin-bottom: 15px;"></td>
+        style="margin-top: 30px; margin-bottom: 15px;">
     <input type="button" value="Salvar" class="btn btn-success"  onclick="Salvar()"
     style="margin-top: 30px; margin-bottom: 15px;">
     <input id="novo" type="button" value="Novo" class="btn btn-success" onclick="Adicionar()"
-        style="margin-top: 30px; margin-bottom: 15px;"></td>
+        style="margin-top: 30px; margin-bottom: 15px;">
     <input type="button" value="Cancelar" onclick="Cancelar()" class="btn btn-danger"
-        style="margin-top: 30px; margin-bottom: 15px;"></td>
+        style="margin-top: 30px; margin-bottom: 15px;">
 
     <div id="divpartialitens">
 
@@ -102,10 +102,10 @@
         var result = $('#IdTurma').val(); 
         var url = '/Boletim/ListaPartialViewDetalhe';
         var parametros = { idTurma: result };
-        $.get(url, parametros) 
-            .done(function (data) {
+           $.get(url, parametros) 
+              .done(function (data) {
                 $('#divpartialitens').html(data);  
-            });
+              });
     }
 
     function Salvar() {
@@ -137,5 +137,15 @@
         $('#divItem').prop('hidden', true);
         Limpar();  
     }
+
+        function TrazerIdGradeAula() {
+            var url = "/Boletim/TrazerIdGradeAula";
+                var parametros = { id: $("#Id").val(), idTurma: $("#IdTurma").val()  }
+            $.get(url, parametros)
+                .done(function (data) {
+                    $('#Id').val(data.boletim.id);
+                });
+
+        }
 
 </script>
