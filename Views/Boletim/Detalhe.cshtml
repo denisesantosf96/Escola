@@ -22,7 +22,7 @@
         <div class="col-md-6">
             <input id="Id" type="hidden" class="form-control">
             <label class="form-label">Turma</label>
-                <select id="IdTurma" asp-items="@ViewBag.Turmas"  class="form-control" onchange="Pesquisar()" onblur="TrazerIdGradeAula()"></select>
+            <select id="IdTurma" asp-items="@ViewBag.Turmas"  class="form-control" onchange="Pesquisar()"></select>
         </div>
         <div class="col-md-6">
             <label class="form-label">Grade de Aula</label>
@@ -137,15 +137,5 @@
         $('#divItem').prop('hidden', true);
         Limpar();  
     }
-
-        function TrazerIdGradeAula() {
-            var url = "/Boletim/TrazerIdGradeAula";
-                var parametros = { id: $("#Id").val(), idTurma: $("#IdTurma").val()  }
-            $.get(url, parametros)
-                .done(function (data) {
-                    $('#Id').val(data.boletim.id);
-                });
-
-        }
 
 </script>

@@ -110,18 +110,6 @@ namespace Escola.Controllers
             return PartialView(boletins.ToPagedList(1, itensPorPagina));
         }
 
-        public JsonResult TrazerIdGradeAula(int id, int idTurma)
-        {
-            SqlParameter[] parametros = new SqlParameter[]{
-                new SqlParameter("@id", id),
-                new SqlParameter("@idTurma", idTurma)
-            };
-
-            Models.GradeAula gradeaula = _context.ListarObjeto<Models.GradeAula>("sp_consultarGradeAulaPorTurma", parametros);
-
-            return new JsonResult(new { gradeaula });
-        }
-
         private void ViewBagEscolas()
         {
             SqlParameter[] param = new SqlParameter[]{
