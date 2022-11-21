@@ -37,11 +37,12 @@ namespace Escola.Controllers
             return View(boletins.ToPagedList(numeroPagina, itensPorPagina));
         }
 
-        public IActionResult Detalhe(int? idTurma, int idEscola)
+        public IActionResult Detalhe(int idTurma, int idEscola)
         {
             ViewBag.IdTurma = idTurma;
             ViewBagTurmas(idEscola);
             ViewBagAlunos();
+            ViewBagMaterias(idTurma);
             return View();
 
         }
@@ -152,6 +153,21 @@ namespace Escola.Controllers
             {
                 Text = c.Id + " - " + c.Tipo + " - " + c.Serie + " - " + c.Descricao,
                 Value = c.Id.ToString()
+            }).ToList();
+        }
+
+        private void ViewBagMaterias(int idTurma)
+        {
+            SqlParameter[] param = new SqlParameter[]{
+                new SqlParameter("@idTurma", idTurma)
+            };
+            List<Models.GradeAula> materias = new List<Models.GradeAula>();
+            materias = _context.RetornarLista<Models.GradeAula>("sp_consultarMateriaTurma", param);
+
+            ViewBag.Materias = materias.Select(c => new SelectListItem()
+            {
+                Text = c.IdMateria + " - " + c.NomeMateria,
+                Value = c.IdMateria.ToString()
             }).ToList();
         }
 

@@ -22,12 +22,19 @@
         <div class="col-md-6">
             <input id="Id" type="hidden" class="form-control">
             <label class="form-label">Turma</label>
-            <select id="IdTurma" asp-items="@ViewBag.Turmas"  class="form-control" onchange="Pesquisar()"></select>
+                <select id="IdTurma" asp-items="@ViewBag.Turmas"  class="form-control" onchange="Pesquisar()"></select>
         </div>
         <div class="col-md-6">
             <label class="form-label">Grade de Aula</label>
             <input id="IdGradeAula" type="text" class="form-control">
         </div>
+    </div>
+
+    <div class="row">
+         <div class="col-md-6">
+             <label class="form-label">Matéria</label>
+             <select id="IdMateria" asp-items="@ViewBag.Materias" class="form-control"></select>
+         </div>
     </div>
 
     <div id="divItem" hidden>

@@ -13,6 +13,8 @@ namespace Escola.Models
         public string Tipo { get; set; }
         public string Descricao { get; set; }
         public string Serie { get; set; }
+        public int IdMateria { get; set; }
+        public string NomeMateria { get; set; }
 
     }
 }
