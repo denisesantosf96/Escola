@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Programação\\.NET e C#\\Projetos\\Escola\\Escola.csproj": {}
+    "D:\\Programação\\Projetos\\Escola\\Escola.csproj": {}
   },
   "projects": {
-    "D:\\Programação\\.NET e C#\\Projetos\\Escola\\Escola.csproj": {
+    "D:\\Programação\\Projetos\\Escola\\Escola.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Programação\\.NET e C#\\Projetos\\Escola\\Escola.csproj",
+        "projectUniqueName": "D:\\Programação\\Projetos\\Escola\\Escola.csproj",
         "projectName": "Escola",
-        "projectPath": "D:\\Programação\\.NET e C#\\Projetos\\Escola\\Escola.csproj",
+        "projectPath": "D:\\Programação\\Projetos\\Escola\\Escola.csproj",
         "packagesPath": "C:\\Users\\denis\\.nuget\\packages\\",
-        "outputPath": "D:\\Programação\\.NET e C#\\Projetos\\Escola\\obj\\",
+        "outputPath": "D:\\Programação\\Projetos\\Escola\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -76,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
