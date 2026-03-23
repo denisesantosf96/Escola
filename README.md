@@ -7,6 +7,8 @@ Sistema desenvolvido para cadastro e gerenciamento de alunos e informações esc
 - C#
 - ASP.NET Core
 - SQL Server
+- Entity Framework Core
+- HTML, CSS, JavaScript, Bootstrap
 
 ## 🎯 Funcionalidades
 - Cadastro de alunos
